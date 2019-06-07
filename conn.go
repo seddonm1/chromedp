@@ -6,7 +6,7 @@ import (
 	"io"
 	"net"
 
-	"github.com/chromedp/cdproto"
+	"github.com/seddonm1/cdproto"
 	"github.com/gobwas/ws"
 	"github.com/gobwas/ws/wsutil"
 	"github.com/mailru/easyjson"

@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/chromedp/cdproto/cdp"
-	"github.com/chromedp/cdproto/dom"
+	"github.com/seddonm1/cdproto/cdp"
+	"github.com/seddonm1/cdproto/dom"
+	"github.com/seddonm1/cdproto/runtime"
 )
 
 /*
@@ -204,6 +205,36 @@ func ByNodeID(s *Selector) {
 	})(s)
 }
 
+// ByJSPath is a query option to select elements by JS Path
+// this allows selection of nodes within ShadowDOM nodes
+func ByJSPath(s *Selector) {
+	ByFunc(func(ctx context.Context, n *cdp.Node) ([]cdp.NodeID, error) {
+		// set awaitPromise
+		p := runtime.Evaluate(s.selAsString()).WithAwaitPromise(true)
+
+		// evaluate
+		v, exp, err := p.Do(ctx)
+		if err != nil {
+			return nil, err
+		}
+		if exp != nil {
+			return nil, exp
+		}
+
+		// use the ObjectID from the evaluation to get the nodeID
+		nodeID, err := dom.RequestNode(v.ObjectID).Do(ctx)
+		if err != nil {
+			return nil, err
+		}
+
+		if nodeID == cdp.EmptyNodeID {
+			return []cdp.NodeID{}, nil
+		}
+
+		return []cdp.NodeID{nodeID}, nil
+	})(s)
+}
+
 // waitReady waits for the specified nodes to be ready.
 func (s *Selector) waitReady(check func(context.Context, *cdp.Node) error) func(context.Context, *cdp.Frame, ...cdp.NodeID) ([]*cdp.Node, error) {
 	errc := make(chan error, 1)
@@ -270,7 +301,7 @@ func NodeVisible(s *Selector) {
 
 		// check offsetParent
 		var res bool
-		err = EvaluateAsDevTools(fmt.Sprintf(visibleJS, n.FullXPath()), &res).Do(ctx)
+		err = EvaluateAsDevTools(fmt.Sprintf(visibleJS, n.FullJSPath()), &res).Do(ctx)
 		if err != nil {
 			return err
 		}
@@ -296,7 +327,7 @@ func NodeNotVisible(s *Selector) {
 
 		// check offsetParent
 		var res bool
-		err = EvaluateAsDevTools(fmt.Sprintf(visibleJS, n.FullXPath()), &res).Do(ctx)
+		err = EvaluateAsDevTools(fmt.Sprintf(visibleJS, n.FullJSPath()), &res).Do(ctx)
 		if err != nil {
 			return err
 		}

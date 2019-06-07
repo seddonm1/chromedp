@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/chromedp/cdproto/runtime"
+	"github.com/seddonm1/cdproto/runtime"
 )
 
 // Evaluate is an action to evaluate the Javascript expression, unmarshaling

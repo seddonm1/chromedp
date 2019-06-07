@@ -16,11 +16,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/chromedp/cdproto/cdp"
-	"github.com/chromedp/cdproto/dom"
-	"github.com/chromedp/cdproto/page"
-	cdpruntime "github.com/chromedp/cdproto/runtime"
-	"github.com/chromedp/cdproto/target"
+	"github.com/seddonm1/cdproto/cdp"
+	"github.com/seddonm1/cdproto/dom"
+	"github.com/seddonm1/cdproto/page"
+	cdpruntime "github.com/seddonm1/cdproto/runtime"
+	"github.com/seddonm1/cdproto/target"
 )
 
 var (

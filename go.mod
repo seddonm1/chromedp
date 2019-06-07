@@ -1,9 +1,9 @@
-module github.com/chromedp/chromedp
+module github.com/seddonm1/chromedp
 
 go 1.11
 
 require (
-	github.com/chromedp/cdproto v0.0.0-20190429085128-1aa4f57ff2a9
+	github.com/seddonm1/cdproto v0.0.0-20190429085128-1aa4f57ff2a9
 	github.com/gobwas/httphead v0.0.0-20180130184737-2c6c146eadee // indirect
 	github.com/gobwas/pool v0.2.0 // indirect
 	github.com/gobwas/ws v1.0.0

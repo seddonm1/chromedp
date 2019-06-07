@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/chromedp/cdproto/page"
+	"github.com/seddonm1/cdproto/page"
 )
 
 // Navigate navigates the current frame.

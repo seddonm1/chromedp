@@ -5,7 +5,7 @@ package chromedp
 import (
 	json "encoding/json"
 
-	target "github.com/chromedp/cdproto/target"
+	target "github.com/seddonm1/cdproto/target"
 	easyjson "github.com/mailru/easyjson"
 	jlexer "github.com/mailru/easyjson/jlexer"
 	jwriter "github.com/mailru/easyjson/jwriter"

@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/chromedp/cdproto/page"
-	"github.com/chromedp/cdproto/target"
+	"github.com/seddonm1/cdproto/page"
+	"github.com/seddonm1/cdproto/target"
 )
 
 func TestCloseDialog(t *testing.T) {

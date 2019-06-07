@@ -12,12 +12,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/chromedp/cdproto/cdp"
-	"github.com/chromedp/cdproto/css"
-	"github.com/chromedp/cdproto/dom"
-	"github.com/chromedp/cdproto/emulation"
+	"github.com/seddonm1/cdproto/cdp"
+	"github.com/seddonm1/cdproto/css"
+	"github.com/seddonm1/cdproto/dom"
+	"github.com/seddonm1/cdproto/emulation"
 
-	"github.com/chromedp/chromedp/kb"
+	"github.com/seddonm1/chromedp/kb"
 )
 
 func TestNodes(t *testing.T) {

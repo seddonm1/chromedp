@@ -4,11 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/chromedp/cdproto/cdp"
-	"github.com/chromedp/cdproto/dom"
-	"github.com/chromedp/cdproto/input"
+	"github.com/seddonm1/cdproto/cdp"
+	"github.com/seddonm1/cdproto/dom"
+	"github.com/seddonm1/cdproto/input"
 
-	"github.com/chromedp/chromedp/kb"
+	"github.com/seddonm1/chromedp/kb"
 )
 
 // MouseAction is a mouse action.
@@ -57,7 +57,7 @@ func MouseClickXY(x, y int64, opts ...MouseOption) Action {
 func MouseClickNode(n *cdp.Node, opts ...MouseOption) Action {
 	return ActionFunc(func(ctx context.Context) error {
 		var pos []int
-		err := EvaluateAsDevTools(fmt.Sprintf(scrollIntoViewJS, n.FullXPath()), &pos).Do(ctx)
+		err := EvaluateAsDevTools(fmt.Sprintf(scrollIntoViewJS, n.FullJSPath()), &pos).Do(ctx)
 		if err != nil {
 			return err
 		}

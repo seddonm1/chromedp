@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/chromedp/cdproto/cdp"
-	"github.com/chromedp/cdproto/input"
+	"github.com/seddonm1/cdproto/cdp"
+	"github.com/seddonm1/cdproto/input"
 )
 
 // inViewportJS is a javascript snippet that will get the specified node
@@ -15,7 +15,7 @@ import (
 const inViewportJS = `(function(a) {
 		var r = a[0].getBoundingClientRect();
 		return r.top >= 0 && r.left >= 0 && r.bottom <= window.innerHeight && r.right <= window.innerWidth;
-	})($x(%q))`
+	})(%q)`
 
 func TestMouseClickXY(t *testing.T) {
 	t.Parallel()
@@ -142,7 +142,7 @@ func TestMouseClickOffscreenNode(t *testing.T) {
 			}
 
 			var ok bool
-			if err := Run(ctx, EvaluateAsDevTools(fmt.Sprintf(inViewportJS, nodes[0].FullXPath()), &ok)); err != nil {
+			if err := Run(ctx, EvaluateAsDevTools(fmt.Sprintf(inViewportJS, nodes[0].FullJSPath()), &ok)); err != nil {
 				t.Fatalf("got error: %v", err)
 			}
 

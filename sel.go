@@ -221,6 +221,12 @@ func ByJSPath(s *Selector) {
 			return nil, exp
 		}
 
+		// query resolves to no nodes
+		if v.Subtype == "null" {
+			s.exp = 0
+			return []cdp.NodeID{}, nil
+		}
+
 		// use the ObjectID from the evaluation to get the nodeID
 		nodeID, err := dom.RequestNode(v.ObjectID).Do(ctx)
 		if err != nil {

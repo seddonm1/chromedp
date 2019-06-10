@@ -29,6 +29,7 @@ func Evaluate(expression string, res interface{}, opts ...EvaluateOption) Action
 	return ActionFunc(func(ctx context.Context) error {
 		// set up parameters
 		p := runtime.Evaluate(expression)
+
 		switch res.(type) {
 		case **runtime.RemoteObject:
 		default:
@@ -42,6 +43,7 @@ func Evaluate(expression string, res interface{}, opts ...EvaluateOption) Action
 
 		// evaluate
 		v, exp, err := p.Do(ctx)
+
 		if err != nil {
 			return err
 		}
@@ -58,7 +60,6 @@ func Evaluate(expression string, res interface{}, opts ...EvaluateOption) Action
 			*x = []byte(v.Value)
 			return nil
 		}
-
 		// unmarshal
 		return json.Unmarshal(v.Value, res)
 	})

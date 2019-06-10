@@ -11,11 +11,11 @@ const (
 			}
 		}
 		return s;
-	})(%s.children)`
+	})($x('%s/node()'))`
 
 	// blurJS is a javscript snippet that blurs the specified element.
 	blurJS = `(function(a) {
-		a.blur();
+		a[0].blur();
 		return true;
 	})(%s)`
 
@@ -23,18 +23,18 @@ const (
 	// into the window's viewport (if needed), returning the actual window x/y
 	// after execution.
 	scrollIntoViewJS = `(function(a) {
-		a.scrollIntoViewIfNeeded(true);
+		a[0].scrollIntoViewIfNeeded(true);
 		return [window.scrollX, window.scrollY];
 	})(%s)`
 
 	// submitJS is a javascript snippet that will call the containing form's
 	// submit function, returning true or false if the call was successful.
 	submitJS = `(function(a) {
-		if (a.nodeName === 'FORM') {
-			a.submit();
+		if (a[0].nodeName === 'FORM') {
+			a[0].submit();
 			return true;
-		} else if (a.form !== null) {
-			aform.submit();
+		} else if (a[0].form !== null) {
+			a[0].form.submit();
 			return true;
 		}
 		return false;
@@ -43,11 +43,11 @@ const (
 	// resetJS is a javascript snippet that will call the containing form's
 	// reset function, returning true or false if the call was successful.
 	resetJS = `(function(a) {
-		if (a.nodeName === 'FORM') {
-			a.reset();
+		if (a[0].nodeName === 'FORM') {
+			a[0].reset();
 			return true;
-		} else if (a.form !== null) {
-			a.form.reset();
+		} else if (a[0].form !== null) {
+			a[0].form.reset();
 			return true;
 		}
 		return false;
@@ -56,18 +56,18 @@ const (
 	// attributeJS is a javascript snippet that returns the attribute of a specified
 	// node.
 	attributeJS = `(function(a, n) {
-		return a[n];
-	})(%s, %s)`
+		return a[0][n];
+	})(%s, %q)`
 
 	// setAttributeJS is a javascript snippet that sets the value of the specified
 	// node, and returns the value.
 	setAttributeJS = `(function(a, n, v) {
-		return a[n] = v;
-	})(%s, %s, %s)`
+		return a[0][n] = v;
+	})(%s, %q, %q)`
 
 	// visibleJS is a javascript snippet that returns true or false depending
 	// on if the specified node's offsetParent is not null.
 	visibleJS = `(function(a) {
-		return a.offsetParent !== null;
+		return a[0].offsetParent !== null;
 	})(%s)`
 )

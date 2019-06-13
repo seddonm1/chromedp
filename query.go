@@ -16,7 +16,7 @@ import (
 )
 
 // Nodes retrieves the document nodes matching the selector.
-func Nodes(sel interface{}, nodes *[]*cdp.Node, opts ...QueryOption) Action {
+func Nodes(sel interface{}, nodes *interface{}, opts ...QueryOption) Action {
 	if nodes == nil {
 		panic("nodes cannot be nil")
 	}

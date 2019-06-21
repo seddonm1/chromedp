@@ -166,7 +166,7 @@ func Clear(sel interface{}, opts ...QueryOption) Action {
 }
 
 // Value retrieves the value of the first node matching the selector.
-func Value(sel interface{}, value *string, opts ...QueryOption) Action {
+func Value(sel interface{}, value *interface{}, opts ...QueryOption) Action {
 	if value == nil {
 		panic("value cannot be nil")
 	}
